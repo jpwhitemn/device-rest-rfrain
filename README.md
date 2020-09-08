@@ -12,6 +12,8 @@ EdgeX RFRain asynchronous device service using REST
 - Documentation
 - Clean up the code
 - Test against real smart reader
+- Dockerize the device service
+- update Makefile/Jenkinsfile, etc.
 
 ## Questions for RFRain team
 - When should I stop alert engine?  "always running in the cloud"
