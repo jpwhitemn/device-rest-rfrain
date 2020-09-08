@@ -139,9 +139,6 @@ func NewRFRainClient(lc logger.LoggingClient) *RFRainClient {
 func (c *RFRainClient) StartSession() {
 	sessionOk := c.getSessionKey()
 	if sessionOk {
-		jsonData := map[string]string{"sessionkey": c.SessionKey}
-		jsonValue, _ := json.Marshal(jsonData)
-		fmt.Sprintf("%s", jsonValue)
 		// if the alert does not exist
 		if !c.listAlertGroups() {
 			c.Logger.Debug("alert group not defined... adding alert group: %s", c.GroupName)
