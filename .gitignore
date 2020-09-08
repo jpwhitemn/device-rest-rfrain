@@ -1,0 +1,32 @@
+.idea/
+vendor
+*.exe
+glide.lock
+*.DS_Store
+docker/docker-compose.yml
+.project
+.vscode/
+go.sum
+coverage.out
+debug
+*.dll
+.security-secrets-setup.complete
+VERSION
+
+# binary files
+cmd/device-rest-rfrain
+docs/_build/
+
+# log dirs
+**/logs
+
+# snap files
+*.snap
+*.bz2
+*.pyc
+parts/*
+prime/*
+stage/*
+snap/.snapcraft/*
+go.sum
+squashfs-root/

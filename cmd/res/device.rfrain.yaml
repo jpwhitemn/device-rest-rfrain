@@ -1,0 +1,154 @@
+name: "RFRainSensor"
+manufacturer: "RFRain"
+model: "cl_v7.00.13.06"
+labels:
+- "rfid"
+description: "RFRain device service"
+
+deviceResources:
+-
+  name: "tagnumb"
+  description: "rfid tag number"
+  properties:
+    value:
+      { type: "String", readWrite: "R"}
+    units:
+      { type: "String", readWrite: "R", defaultValue: "id" }
+-
+  name: "tagname"
+  description: "rfid tag name"
+  properties:
+    value:
+      { type: "String", readWrite: "R"}
+    units:
+      { type: "String", readWrite: "R", defaultValue: "name" }
+# -  
+#   name: "detectstat"
+#   description: "tag status"
+#   properties:
+#     value:
+#       { type: "String", readWrite: "R"}
+#     units:
+#       { type: "String", readWrite: "R", defaultValue: "status" }
+-
+  name: "subzone"
+  description: "sub zone"
+  properties:
+    value:
+      { type: "String", readWrite: "R"}
+    units:
+      { type: "String", readWrite: "R", defaultValue: "zone" }
+-
+  name: "SS"
+  description: "signal strength"
+  properties:
+    value:
+      { type: "String", readWrite: "R", minimum: "0", maximum: "100", defaultValue: "0" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "% strength" }
+-
+  name: "readername"
+  description: "RFID reader name"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "name" }
+-
+  name: "groupname"
+  description: "RFID group name"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "name" }
+-
+  name: "readerid"
+  description: "RFID reader id"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "identifier" }
+-
+  name: "data"
+  description: "tag data"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "data" }
+-
+  name: "zone"
+  description: "reader zone"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "zone" }
+-
+  name: "location"
+  description: "reader location"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "location" }
+-
+  name: "current_status"
+  description: "UTC time when tag was read"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "status" }
+-
+  name: "current_access_utc"
+  description: "UTC time when tag was read"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "UTC" }
+-
+  name: "current_access"
+  description: "UTC time when tag was read"
+  properties:
+    value:
+      { type: "String", readWrite: "R" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "UTC" }
+
+deviceCommands:
+-
+  name: "Latest_Tags"
+  get:
+  - { operation: "get", deviceResource: "tagnumb" }
+  - { operation: "get", deviceResource: "tagname" }
+  # - { operation: "get", deviceResource: "detectstat" }
+  - { operation: "get", deviceResource: "subzone" }
+  - { operation: "get", deviceResource: "SS" }
+  - { operation: "get", deviceResource: "readername" }
+  - { operation: "get", deviceResource: "groupname" }
+  - { operation: "get", deviceResource: "readerid" }
+  - { operation: "get", deviceResource: "data" }
+  - { operation: "get", deviceResource: "zone" }
+  - { operation: "get", deviceResource: "location" }
+  - { operation: "get", deviceResource: "current_status" }
+  - { operation: "get", deviceResource: "current_access_utc" }
+  - { operation: "get", deviceResource: "current_access" }
+
+coreCommands:
+-
+  name: "Latest"
+  get:
+    path: "/api/v1/device/{deviceId}/Latest"
+    responses:
+    -
+      code: "200"
+      description: ""
+      expectedValues: ["Latest_Tags"]
+    -
+      code: "500"
+      description: "internal server error"
+      expectedValues: []
